@@ -15,11 +15,20 @@ char *extractMessage(const char *message_in, int length) {
 
    // allocates an array for the output
    char *message_out = new char[length];
+   int *temp = new int[length];
    for (int i=0; i<length; i++) {
-   		message_out[i] = 0;    // Initialize all elements to zero.
-	}
+       message_out[i] = 0;    // Initialize all elements to zero.
+       temp[i] = toBin(message_in[i]);
+   }
 
 	// TODO: write your code here
+   char *temp_in = new char[lenght];
+   for (int i = 0; i < length/8; i+=8) {
+       for (int j = 0; j < 8; j++) {
+           	
+       }
+  }
 
-	return message_out;
+
+   return message_out;
 }
