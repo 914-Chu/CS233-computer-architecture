@@ -20,10 +20,10 @@ module logicunit_test;
     
     wire out;
     logicunit l1(out, A, B, control);
-    ///*
+    /*
     initial begin
 	    $display("A B s o");
 	    $monitor("%d %d %d %d (at time %t)", A, B, control, out, $time);
     end
-    //*/
+    */
 endmodule // logicunit_test
