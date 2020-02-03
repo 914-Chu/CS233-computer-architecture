@@ -3,3 +3,14 @@
 
 // make generator
 // ./generator
+
+#include<cstdio>
+using std::printf;
+
+int main() {
+	int width = 32;
+	for (int i = 1 ; i < 32; i ++) {
+            printf("alu1 a%d(out[%d], carryout[%d], A[%d], B[%d], carryout[%d], control);\n", i, i, i, i, i, i-1);
+        }
+	return 0;
+}
