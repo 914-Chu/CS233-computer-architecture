@@ -26,10 +26,10 @@ module alu1_test;
 
     wire out, carryout;
     alu1 a1(out, carryout, A, B, carryin, control);
-
+    /*
     initial begin
 	    $display("A B cin s cout o");
 	    $monitor("%d %d %d %d %d %d (at time %t)", A, B, carryin, control, carryout, out, $time);
     end
-
+    */
 endmodule
