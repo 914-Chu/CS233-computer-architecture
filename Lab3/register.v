@@ -13,6 +13,13 @@ module register(q, d, clk, enable, reset);
     input  clk, enable, reset;
 
    //  Your implementation goes here
+    genvar i;
+    generate 
+	    for(i = 0; i < 32; i=i+1)
+	    begin:label	    
+		    dffe dff(q[i], d[i], clk, enable, reset);
+	    end
+    endgenerate
 
 endmodule // register
 
@@ -36,7 +43,7 @@ module dffe(q, d, clk, enable, reset);
      if (reset == 1'b1)
        q <= 0;
 
-   always@(posedge clk)
+  always@(posedge clk)
      if ((reset == 1'b0) && (enable == 1'b1))
        q <= d;
 endmodule // dffe
