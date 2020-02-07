@@ -1,0 +1,35 @@
+Grades for version committed on time
+	register: 5.0 / 5.0
+			*Passed test: register
+				*q correctly detected on 4 cycles.
+				5.00/5.00 points
+		
+	reg_writer: 6.43 / 15.0
+			*Partially passed test: write up 
+				*done correctly detected on 1 cycles.
+				*regnum correctly detected on 0 cycles.
+				*regnum not detected on 6 cycles.
+				*regnum falsely detected on 4 cycles.
+				0.43/3.00 points
+			*Passed test: write down
+				*done correctly detected on 1 cycles.
+				*regnum correctly detected on 5 cycles.
+				3.00/3.00 points
+			*Passed test: subsequent runs
+				*done correctly detected on 3 cycles.
+				*regnum correctly detected on 10 cycles.
+				3.00/3.00 points
+			*Failed test: simple reset
+				*regnum correctly detected on 0 cycles.
+				*regnum not detected on 2 cycles.
+				*regnum falsely detected on 4 cycles.
+				0.00/3.00 points
+			*Failed test: complex reset
+				*regnum correctly detected on 0 cycles.
+				*regnum not detected on 6 cycles.
+				*regnum falsely detected on 4 cycles.
+				0.00/3.00 points
+		
+Total: 11.43 / 20.0
+
+Final Score: 11.43 / 20.0
