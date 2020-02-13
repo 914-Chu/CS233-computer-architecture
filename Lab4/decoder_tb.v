@@ -5,11 +5,26 @@ module decoder_test;
         $dumpfile("decoder.vcd");
         $dumpvars(0, decoder_test);
 
-             opcode = `OP_OTHER0; funct = `OP0_ADD; // try addition
-        # 10 opcode = `OP_OTHER0; funct = `OP0_SUB; // try subtraction
-        // add more tests here!
+             opcode = `OP_OTHER0; funct = `OP0_ADD;  // try addition
+        # 10 opcode = `OP_OTHER0; funct = `OP0_ADDU; // try unsigned addition
+        # 10 opcode = `OP_OTHER0; funct = `OP0_SUB;  // try subtraction
+        # 10 opcode = `OP_OTHER0; funct = `OP0_AND;  // try and
+        # 10 opcode = `OP_OTHER0; funct = `OP0_OR;   // try or
+        # 10 opcode = `OP_OTHER0; funct = `OP0_NOR;  // try nor
+	# 10 opcode = `OP_OTHER0; funct = `OP0_XOR;  // try xor
+      
+        # 10 opcode = `OP_ADDI;                      // try add immediate 
+        # 10 opcode = `OP_ADDIU;                     // try add unsigned immediate
+	# 10 opcode = `OP_ANDI;                      // try and immediate 
+	# 10 opcode = `OP_ORI;                       // try or immediate
+	# 10 opcode = `OP_XORI;                      // try xor immediate
 
-        # 10 $finish;
+	# 10 opcode = `OP_OTHER1;                    // try exception   
+	# 10 opcode = `OP0_ADD;                      // try exception
+	# 10 opcode = `OP_OTHER0; funct = `OP_ADDI;  // try exception
+	# 10 opcode = `OP0_SUB; funct = `OP_OTHER0;  // try exception 
+	# 10 funct = `OP_XORI; 			     // try exception
+	# 10 $finish;
     end
 
     // use gtkwave to test correctness
