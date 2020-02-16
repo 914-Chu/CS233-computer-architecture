@@ -28,13 +28,12 @@ module mips_decode(rd_src, writeenable, alu_src2, alu_op, except, opcode, funct)
     wire Ori = (opcode == 6'hd);
     wire Xori = (opcode == 6'he);
 
-    assign rd_src = (opcode != 6'h0);
-    assign writeenable = 1; 
+    assign rd_src = (opcode != 6'h0); 
     assign alu_src2[0] = Addi|Addui;
     assign alu_src2[1] = Andi|Ori|Xori;
     assign alu_op[0] = Sub|Or|Xor|Ori|Xori;
     assign alu_op[1] = Add|Sub|Nor|Xor|Addi|Xori;
     assign alu_op[2] = And|Or|Nor|Xor|Andi|Ori|Xori;
     assign except = !(Add|Addu|Sub|And|Or|Nor|Xor|Addi|Addui|Andi|Ori|Xori);
-    
+    assign writeenable = !except;
 endmodule // mips_decode
