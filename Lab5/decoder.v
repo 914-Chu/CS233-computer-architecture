@@ -28,5 +28,49 @@ module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
     output       mem_read, word_we, byte_we, byte_load, slt, lui, addm;
     input  [5:0] opcode, funct;
     input        zero;
+    
 
+    wire Add = !opcode & (funct == 6'h20);
+    wire Addu = !opcode & (funct == 6'h21);
+    wire Sub = !opcode & (funct == 6'h22);
+    wire And = !opcode & (funct == 6'h24);
+    wire Or = !opcode & (funct == 6'h25);
+    wire Nor = !opcode & (funct == 6'h27);
+    wire Xor = !opcode & (funct == 6'h26);
+    wire Addi = (opcode == 6'h8);
+    wire Addui = (opcode == 6'h9);
+    wire Andi = (opcode == 6'hc);
+    wire Ori = (opcode == 6'hd);   
+    wire Xori = (opcode == 6'he);
+    wire Beq = (opcode == 6'h4)&zero;
+    wire Bne = (opcode == 6'h5)&!zero;
+    wire J = (opcode == 6'h2);
+    wire Jr = !opcode & (funct == 6'h8);
+    wire Lui = (opcode == 6'hf);
+    wire Slt = !opcode & (funct == 6'h2a);
+    wire Lw = (opcode == 6'h23);
+    wire Lbu = (opcode == 6'h24);
+    wire Sw = (opcode == 6'h2b);
+    wire Sb = (opcode == 6'h28);
+    wire Addm = !opcode & (funct == 6'h2c);
+  
+    assign rd_src = Lui|Lw|Lbu|Addi|Addui|Andi|Ori|Xori;
+    assign alu_src2[0] = Addi|Addui|Lw|Lbu|Sw|Sb;
+    assign alu_src2[1] = Andi|Ori|Xori;
+    assign alu_op[0] = Sub|Or|Xor|Ori|Xori|Beq|Bne|Slt; 
+    assign alu_op[1] = Add|Sub|Nor|Xor|Addi|Xori|Beq|Bne|Slt|Lw|Lbu|Sw|Sb|Addm;
+    assign alu_op[2] = And|Or|Nor|Xor|Andi|Ori|Xori;
+    assign except = !(Add|Addu|Sub|And|Or|Nor|Xor|Addi|Addui|Andi|Ori|Xori|Beq|Bne|J|Jr|Lui|Slt|Lw|Lbu|Sw|Sb|Addm);
+    assign writeenable = !except&!Beq&!Bne&!J&!Jr&!Sw&!Sb;
+    assign control_type[0] = Beq|Bne|Jr; 
+    assign control_type[1] = J|Jr;
+    assign mem_read = Lw|Lbu;
+    assign word_we = Sw;
+    assign byte_we = Sb;
+    assign byte_load = Lbu;
+    assign slt = Slt;
+    assign lui = Lui;
+    assign addm = Addm;
+    //assign a = Addm;
+    //assign b = Addm;
 endmodule // mips_decode
