@@ -31,7 +31,8 @@ module full_machine(except, clock, reset);
     wire [1:0]  alu_src2;
     wire overflow, zero, negative;
     
-    wire [31:0] slt1 = {{31{1'b0}}, negative};
+    wire [31:0] slt1 = {{31{1'b0}}, newslt};
+    wire newslt = negative ^ overflow;
     wire slt;
 
     wire [31:0] mem0;
@@ -82,7 +83,7 @@ module full_machine(except, clock, reset);
 
     mux2v selA(A, A_data, data_out, addm); //select A for ALU(ADDM implementation)
     
-    mux2v Slt(mem0, out, slt1, slt);
+    mux2v Slt(mem0, out, slt1, slt); //fixed slt for overflow
     
     mux2v memR(lui0, mem0, mem1, mem_read); 
 
