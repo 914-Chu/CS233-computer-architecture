@@ -22,8 +22,7 @@ module decoder_test;
 	# 10 opcode = `OP_XORI;                      // try xor immediate
 	
 	# 10 opcode = `OP_OTHER1;                    // try exception
-	# 10 opcode = `OP0_ADD;                      // try exception 
-	# 10 opcode = `OP_OTHER0; funct = `OP_ADDI;  // try exception  
+	# 10 opcode = `OP0_ADD;                      // try exception   
 	# 10 opcode = `OP0_SUB; funct = `OP_OTHER0;  // try exception
 	# 10 funct = `OP_XORI;                       // try exception
 	// test all of the others here

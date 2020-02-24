@@ -18,9 +18,8 @@
 // zero          (input) - from the ALU
 //
 
-module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
-                   mem_read, word_we, byte_we, byte_load, slt, lui, addm,
-                   opcode, funct, zero);
+module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type, mem_read, word_we, byte_we, byte_load, slt, lui, addm, opcode, funct, zero);
+
     output [2:0] alu_op;
     output [1:0] alu_src2;
     output       writeenable, rd_src, except;
@@ -42,8 +41,8 @@ module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
     wire Andi = (opcode == 6'hc);
     wire Ori = (opcode == 6'hd);   
     wire Xori = (opcode == 6'he);
-    wire Beq = (opcode == 6'h4)&zero;
-    wire Bne = (opcode == 6'h5)&!zero;
+    wire Beq = (opcode == 6'h4);
+    wire Bne = (opcode == 6'h5);
     wire J = (opcode == 6'h2);
     wire Jr = !opcode & (funct == 6'h8);
     wire Lui = (opcode == 6'hf);
@@ -53,6 +52,8 @@ module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
     wire Sw = (opcode == 6'h2b);
     wire Sb = (opcode == 6'h28);
     wire Addm = !opcode & (funct == 6'h2c);
+    wire beqz = Beq&zero;
+    wire bnez = Bne&!zero;
   
     assign rd_src = Lui|Lw|Lbu|Addi|Addui|Andi|Ori|Xori;
     assign alu_src2[0] = Addi|Addui|Lw|Lbu|Sw|Sb;
@@ -61,8 +62,8 @@ module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
     assign alu_op[1] = Add|Sub|Nor|Xor|Addi|Xori|Beq|Bne|Slt|Lw|Lbu|Sw|Sb|Addm;
     assign alu_op[2] = And|Or|Nor|Xor|Andi|Ori|Xori;
     assign except = !(Add|Addu|Sub|And|Or|Nor|Xor|Addi|Addui|Andi|Ori|Xori|Beq|Bne|J|Jr|Lui|Slt|Lw|Lbu|Sw|Sb|Addm);
-    assign writeenable = !except&!Beq&!Bne&!J&!Jr&!Sw&!Sb;
-    assign control_type[0] = Beq|Bne|Jr; 
+    assign writeenable = Lui|Slt|Lw|Lbu|Addm|Add|Addu|Sub|And|Or|Nor|Xor|Addi|Addui|Andi|Ori|Xori;
+    assign control_type[0] = beqz|bnez|Jr; 
     assign control_type[1] = J|Jr;
     assign mem_read = Lw|Lbu;
     assign word_we = Sw;
@@ -70,7 +71,5 @@ module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
     assign byte_load = Lbu;
     assign slt = Slt;
     assign lui = Lui;
-    assign addm = Addm;
-    //assign a = Addm;
-    //assign b = Addm;
+    assign addm = Addm;     //ADDM implementation 
 endmodule // mips_decode
