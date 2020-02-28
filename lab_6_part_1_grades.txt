@@ -1,0 +1,12 @@
+Grades for version committed on time
+	update_alert_level: 20.0 / 20
+			*Passed test: update_alert_level test 1
+			*Passed test: update_alert_level test 2
+			*Passed test: update_alert_level test 3
+			*Passed test: update_alert_level test 4
+			*Passed test: update_alert_level test 5
+			*Passed test: update_alert_level test 6
+		
+Total: 20.0 / 20
+
+Final Score: 20.0 / 20
