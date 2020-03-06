@@ -1,5 +1,5 @@
 Grades for version committed on time
-	find_payment: 16.67 / 20
+	find_payment: 20.0 / 20
 		p1.s: warning: Found 2 instances of jr $ra. Using multiple return points is error prone. Consider merging return points into a single label.
 			*Passed test: find_payment test 1
 			*Passed test: find_payment test 1 (evil)
@@ -7,15 +7,13 @@ Grades for version committed on time
 			*Passed test: find_payment test 2 (evil)
 			*Passed test: find_payment test 3
 			*Passed test: find_payment test 3 (evil)
-			*Failed test: find_payment test 4
-				*Your output: 2147483647 
-			*Failed test: find_payment test 4 (evil)
-				*Your output: 2147483647 
+			*Passed test: find_payment test 4 (everyone passes this test—we missed mentioning a small detail in the lab handout)
+			*Passed test: find_payment test 4 (everyone passes this test—we missed mentioning a small detail in the lab handout) (evil)
 			*Passed test: find_payment test 5
 			*Passed test: find_payment test 5 (evil)
 			*Passed test: find_payment test 6
 			*Passed test: find_payment test 6 (evil)
 		
-Total: 16.67 / 20
+Total: 20.0 / 20
 
-Final Score: 16.67 / 20
+Final Score: 20.0 / 20
