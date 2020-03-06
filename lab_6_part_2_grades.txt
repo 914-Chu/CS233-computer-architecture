@@ -10,11 +10,11 @@ Grades for version committed on time
 			*Passed test: matrix_mult test 6
 		
 	markov_chain: 40.0 / 40
-			*Passed test: matrix_mult test 1
-			*Passed test: matrix_mult test 2
-			*Passed test: matrix_mult test 3
-			*Passed test: matrix_mult test 4
-			*Passed test: matrix_mult test 5
+			*Passed test: markov_chain test 1
+			*Passed test: markov_chain test 2
+			*Passed test: markov_chain test 3
+			*Passed test: markov_chain test 4
+			*Passed test: markov_chain test 5
 		
 Total: 73.33 / 80
 
