@@ -16,9 +16,9 @@ max:
 
 max_for:
 	bge	$t0, $a1, max_return	# !(i < size)
-	sll	$t1, t0, 2
+	sll	$t1, $t0, 2
 	add	$t1, $a0, $t1		# $t1 = &array[i]
-	lw	$t1, 0($s1)		# $t1 = array[i]
+	lw	$t1, 0($t1)		# $t1 = array[i]
 	ble	$t1, $v0, max_for_inc	# !(array[i] > currentMax)
 	move	$v0, $t1		# currentMax = array[i]
 
