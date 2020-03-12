@@ -1,0 +1,26 @@
+Grades for version committed on time
+	toggle_light: 40.0 / 40
+		p2.s: warning: Found 2 instances of jr $ra. Using multiple return points is error prone. Consider merging return points into a single label.
+			*Passed test: toggle_light test 1
+			*Passed test: toggle_light test 1 (evil)
+			*Passed test: toggle_light test 2
+			*Passed test: toggle_light test 2 (evil)
+			*Passed test: toggle_light test 3
+			*Passed test: toggle_light test 3 (evil)
+			*Passed test: toggle_light test 4
+			*Passed test: toggle_light test 4 (evil)
+		
+	solve: 40.0 / 40
+		p2.s: warning: Found 2 instances of jr $ra. Using multiple return points is error prone. Consider merging return points into a single label.
+			*Passed test: solve test 1
+			*Passed test: solve test 1 (evil)
+			*Passed test: solve test 2
+			*Passed test: solve test 2 (evil)
+			*Passed test: solve test 3
+			*Passed test: solve test 3 (evil)
+			*Passed test: solve test 4
+			*Passed test: solve test 4 (evil)
+		
+Total: 80.0 / 80
+
+Final Score: 80.0 / 80
