@@ -34,6 +34,14 @@ REQUEST_PUZZLE_ACK      = 0xffff00d8  ## Puzzle
 RESPAWN_INT_MASK        = 0x2000      ## Respawn
 RESPAWN_ACK             = 0xffff00f0  ## Respawn
 
+WALL			= 1
+HOST_MASK		= 2
+FRIENDLY_MASK		= 4
+FH			= 6
+ENEMY_MASK		= 8
+EH			= 10
+PLAYER_MASK		= 16
+
 .data
 ### Puzzle
 puzzle:     .byte 0:268
@@ -43,6 +51,9 @@ solution:   .byte 0:256
 has_puzzle: .word 0
 
 flashlight_space: .word 0
+
+#### scanner
+ScannerInfo: .byte 0 0 0 0
 
 .text
 main:
@@ -54,7 +65,63 @@ main:
     mtc0    $t4, $12
     
     #Fill in your code here
+    li	    $a0, 10
+    sw	    $a0, VELOCITY
+
+    li      $a0, 45
+    jal     set_orientation
+ 
+    #li      $a0, 90
+    #jal     set_orientation
+    #jal     wait
+    jal      scan_loop
+    
+    
+infinite:
+    j	    infinite
+
     jr      $ra
+
+set_orientation:
+    sw	    $a0, ANGLE
+    li	    $t0, 1
+    sw      $t0, ANGLE_CONTROL
+    jr	    $ra
+
+wait:
+    li      $a0, 10000	
+	
+wait_loop:
+    sub     $a0, $a0, 1
+    bgt	    $a0, $zero, wait_loop
+    jr	    $ra
+
+scan_loop:
+    li	    $s1, 0
+    beq	    $s1, 10000000, end_scan_loop
+    jal     scan
+    add     $s1, $s1, 1
+    j       scan_loop
+
+end_scan_loop:
+    jr      $ra
+
+scan:
+    add     $s1, $s1, 1
+    la      $a1, ScannerInfo
+    sw      $a1, USE_SCANNER
+
+check:
+    lb	    $t0, 0($a1)
+    lb	    $t1, 1($a1)
+    lb      $t2, 2($a1)
+    beq	    $t2, HOST_MASK, shoot
+    jr	    $ra
+
+shoot:
+    sw      $zero, SHOOT_UDP_PACKET
+    jr	    $ra
+
 
 .kdata
 chunkIH:    .space 40
@@ -115,6 +182,13 @@ interrupt_dispatch:                 # Interrupt:
 bonk_interrupt:
     sw      $0, BONK_ACK
     #Fill in your bonk handler code here
+    li	    $a0, 70
+    sw      $a0, ANGLE
+    sw      $zero, ANGLE_CONTROL
+    li      $a0, 10
+    sw      $a0, VELOCITY
+    sw      $a1, BONK_ACK
+ 
     j       interrupt_dispatch      # see if other interrupts are waiting
 
 timer_interrupt:
