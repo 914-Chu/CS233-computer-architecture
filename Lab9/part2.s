@@ -162,3 +162,4 @@ done:
     move    $at, $k1        # Restore $at
 .set at
     eret
+.text
