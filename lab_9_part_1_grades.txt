@@ -1,6 +1,6 @@
 Grades for version committed on time
-	part 1: 15.0 / 20
-		Passed test for part 1!  You earned 15 points.
-Total: 15.0 / 20
+	part 1: 20.0 / 20
+		Passed test for part 1!  You earned 20 points.
+Total: 20.0 / 20
 
-Final Score: 15.0 / 20
+Final Score: 20.0 / 20
