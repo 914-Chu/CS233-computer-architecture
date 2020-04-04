@@ -1,0 +1,6 @@
+Grades for version committed on time
+	part 2: 80.0 / 80.0
+		Completed test for part 2!  You scored 80 points.
+Total: 80.0 / 80.0
+
+Final Score: 80.0 / 80.0
