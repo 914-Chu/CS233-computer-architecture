@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "transpose.h"
-#include <iostream>
+
 // will be useful
 // remember that you shouldn't go over SIZE
 using std::min;
@@ -12,15 +12,13 @@ using std::min;
 void
 transpose_tiled(int **src, int **dest) 
 {
-    int bs = 5;
- 
-    for(int j = 0; j < SIZE; j += bs){
-        for(int i = 0; i < SIZE; i += bs){
-            for (int y = j; y < min(j+bs, SIZE); y ++) {
-                for (int x = i; x < min(i+bs, SIZE); x ++) {
+    //int bs = 10;
+
+    for(int j = 0; j < SIZE; j += 10){
+        for(int i = 0; i < SIZE; i += 10){
+            for (int y = j; y < min(j+10, SIZE); y ++) {
+                for (int x = i; x < min(i+10, SIZE); x ++) {
                     dest[x][y] = src[y][x];
-                    //std::cout << x << " " << y << " " << std::endl;
-                    //dest[x][y] = src[y][x];
                 }
             }
         }
@@ -31,9 +29,7 @@ transpose_tiled(int **src, int **dest)
         for(int j = 0; j < SIZE; j += bs){                                      
             for (int x = i; x < min(i+bs, SIZE); x ++) {                        
                 for (int y = j; y < min(j+bs, SIZE); y ++) {                   
-                   dest[x][y] = src[y][x];                                      
-                   //std::cout << x << " " << y << " " << std::endl;            
-                   //dest[x][y] = src[y][x];                                   
+                   dest[x][y] = src[y][x];                          
                 }                                                              
             }                                                                  
        }                                                                        
